@@ -1,11 +1,18 @@
 <mat-toolbar color='primary'>
-  <button mat-icon-button>
-    <mat-icon>menu</mat-icon>
-  </button>
-  <div><a routerLink='/'>Facediary</a></div>
+  <div>
+    <a routerLink='/'>
+      <mat-icon>forum</mat-icon>
+      Facediary
+    </a></div>
   <ul fxFlex fxLayout fxLayoutGap='10px' fxLayoutAlign='flex-end'>
-    <li><a routerLink='/login'>Login</a></li>
-    <li><a routerLink='/register'>Sign Up</a></li>
+    <li><a routerLink='/login'>
+        <mat-icon>person</mat-icon>
+        Login
+      </a></li>
+    <li><a routerLink='/register'>
+        <mat-icon>person_add</mat-icon>
+        Register
+      </a></li>
     <li><a routerLink='/logout'>Logout</a></li>
   </ul>
 </mat-toolbar>
