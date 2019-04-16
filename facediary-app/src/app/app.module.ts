@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { HeaderComponent } from './components/common/header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { HomeComponent } from './components/home/home/home.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './components/home/home/home.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     MaterialModule
