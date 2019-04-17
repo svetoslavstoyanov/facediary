@@ -1,3 +1,35 @@
-<p>
-  login works!
-</p>
+<mat-card>Login</mat-card>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your username</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Enter your Password</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Password" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    Press submit to login.
+    <div>
+      <button mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
