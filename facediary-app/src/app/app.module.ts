@@ -12,6 +12,7 @@ import { FooterComponent } from './components/common/footer/footer.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyFireStoreModule } from './core/modules/firebase.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MaterialModule, ReactiveFormsModule
+    MaterialModule,
+    ReactiveFormsModule,
+    MyFireStoreModule,
 
   ],
   providers: [],

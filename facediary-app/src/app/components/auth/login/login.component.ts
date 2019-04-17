@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +11,22 @@ export class LoginComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  constructor(private _formBuilder: FormBuilder) { }
+  loginForm: FormGroup;
+  constructor(private _formBuilder: FormBuilder,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      email: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      password: ['', Validators.required]
     });
+    this.loginForm = this._formBuilder.group({})
+  }
+  login() {
+    let email = this.firstFormGroup.value.email
+    let password = this.secondFormGroup.value.password
+    this.authService.loginUser(email, password)
   }
 }

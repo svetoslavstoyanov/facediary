@@ -5,14 +5,14 @@
       Facediary
     </a></div>
   <ul fxFlex fxLayout fxLayoutGap='10px' fxLayoutAlign='flex-end'>
-    <li><a routerLink='/login'>
+    <li *ngIf="!authService.isAuthenticated()"><a routerLink='/login'>
         <mat-icon>person</mat-icon>
         Login
       </a></li>
-    <li><a routerLink='/register'>
+    <li *ngIf="!authService.isAuthenticated()"><a routerLink='/register'>
         <mat-icon>person_add</mat-icon>
         Register
       </a></li>
-    <li><a routerLink='/logout'>Logout</a></li>
+    <li *ngIf="authService.isAuthenticated()"><a routerLink='/logout' (click)="logout()">Logout</a></li>
   </ul>
 </mat-toolbar>

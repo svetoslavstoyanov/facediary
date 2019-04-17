@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,20 +8,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  registerForm: FormGroup
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirthFormGroup: FormGroup;
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      email: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      password: ['', Validators.required]
     });
     this.thirthFormGroup = this._formBuilder.group({
-      thirthCtrl: ['', Validators.required]
+      repeatPassword: ['', Validators.required]
     });
+    this.registerForm = this._formBuilder.group({})
+  }
+  register() {
+    let email = this.firstFormGroup.value.email
+    let password = this.secondFormGroup.value.password
+    let repeatPassword = this.thirthFormGroup.value.repeatPassword
+
+    this.authService.registerUser(email, password)
   }
 }
