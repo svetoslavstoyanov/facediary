@@ -10,9 +10,12 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { HeaderComponent } from './components/common/header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { HomeComponent } from './components/home/home/home.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyFireStoreModule } from './core/modules/firebase.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -31,9 +34,9 @@ import { MyFireStoreModule } from './core/modules/firebase.module';
     MaterialModule,
     ReactiveFormsModule,
     MyFireStoreModule,
-
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

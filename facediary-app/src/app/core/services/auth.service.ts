@@ -45,7 +45,6 @@ export class AuthService {
             this.token = token;
           }); this.router.navigate(['/']);
         localStorage.setItem('email', userData.user.email);
-        localStorage.setItem('authToken', this.token);
       })
       .catch((error) => {
         this.snackbar.open(error.message, 'Undo', {

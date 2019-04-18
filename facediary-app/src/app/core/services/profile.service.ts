@@ -6,9 +6,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ProfileService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore) {
 
-  fetchProfiles(){
-    
   }
+  getProfiles() {
+    return this.firestore.collection('profiles').snapshotChanges();
+  }
+
 }
