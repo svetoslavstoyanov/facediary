@@ -1,4 +1,10 @@
-mat-card{
-    text-align: center;
-    font-size: 1.3em
+mat-card {
+  text-align: center;
+  font-size: 1.3em
+}
+
+mat-form-field {
+  margin: 0 auto;
+  display: block;
+  max-width: 300px;
 }

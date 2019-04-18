@@ -1,63 +1,68 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { MatSnackBar } from '@angular/material';
 import * as firebase from 'firebase';
-
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private _isAuth = false;
-
-  isAuthChanged = new Subject<boolean>();
   token: string;
+  constructor(private toastr: MatSnackBar, private router: Router) { }
 
-  constructor(
-    private afAuth: AngularFireAuth,
-    private router: Router,
-    private snackbar: MatSnackBar
-  ) { }
-
-  get isAuth() {
-    return this._isAuth;
-  }
-
-  registerUser(email: string, password: string) {
-    this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then(() => {
+  register(email: string, password: string) {
+    firebase
+      .auth()
+      .createUserAndRetrieveDataWithEmailAndPassword(email, password)
+      .then(data => {
+        this.toastr.open('Signed Up!', 'Success', {
+          duration: 1000
+        });
         this.router.navigate(['/login']);
       })
-      .catch((error) => {
-        this.snackbar.open(error.message, 'Undo', {
-          duration: 3000
-        });
+      .catch(err => {
+        this.toastr.open(err.message, 'Warning!');
       });
   }
-  loginUser(email: string, password: string) {
-    this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((userData) => {
+  login(email: string, password: string) {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(data => {
         firebase
           .auth()
           .currentUser.getIdToken()
           .then((token: string) => {
             this.token = token;
-          }); this.router.navigate(['/']);
-        localStorage.setItem('email', userData.user.email);
+          });
+        localStorage.setItem('email', email)
+        this.router.navigate(['/Ownprofile']);
+        this.toastr.open('Logged In', 'Success', {
+          duration: 1000
+        });
       })
-      .catch((error) => {
-        this.snackbar.open(error.message, 'Undo', {
-          duration: 3000
+      .catch(err => {
+        this.toastr.open(err.message, 'Warning!', {
+          duration: 1000
         });
       });
   }
-
   logout() {
-    this.afAuth.auth.signOut();
-    localStorage.clear();
-    this.token = null
-    this.router.navigate(['/']);
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        this.router.navigate(['/login']);
+      });
+    this.token = null;
+  }
+  getToken() {
+    firebase
+      .auth()
+      .currentUser.getIdToken()
+      .then((token: string) => {
+        this.token = token;
+      });
+    return this.token;
   }
   isAuthenticated(): boolean {
     return this.token != null;

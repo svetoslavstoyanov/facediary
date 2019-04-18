@@ -15,7 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyFireStoreModule } from './core/modules/firebase.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { ProfilePageComponent } from './components/profile/profile-page/profile-page.component';
+import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
+import { ProfilePersonalComponent } from './components/profile/profile-personal/profile-personal.component';
+
 
 @NgModule({
   declarations: [
@@ -24,8 +27,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
-  ],
+    HomeComponent,
+    ProfilePageComponent,
+    ProfileEditComponent,
+    ProfilePersonalComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,7 +42,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     MyFireStoreModule,
     HttpClientModule
   ],
-  providers: [AngularFirestore],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

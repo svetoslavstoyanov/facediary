@@ -1,6 +1,5 @@
-export class Profiles {
+export class personalProfile {
     constructor(
-        public id: String,
         public name: String,
         public surname: String,
         public profilePhoto: String,

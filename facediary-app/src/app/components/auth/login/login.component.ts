@@ -27,6 +27,6 @@ export class LoginComponent implements OnInit {
   login() {
     let email = this.firstFormGroup.value.email
     let password = this.secondFormGroup.value.password
-    this.authService.loginUser(email, password)
+    this.authService.login(email, password)
   }
 }

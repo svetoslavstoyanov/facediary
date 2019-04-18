@@ -6,6 +6,14 @@ a {
   color: white;
   text-decoration: none;
 }
-a:hover{
+
+a:hover {
   color: #aaaaaa
+}
+
+#logout:hover {
+  cursor: pointer;
+}
+.active{
+  color: rgb(54, 165, 26);
 }

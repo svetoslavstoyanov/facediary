@@ -1,9 +1,6 @@
 <mat-card>Register</mat-card>
 
-<form
-(ngSubmit)="register()"
-[formGroup]="registerForm"
->
+<form (ngSubmit)="register()" [formGroup]="registerForm">
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
@@ -33,6 +30,39 @@
         <ng-template matStepLabel>Repeat Password</ng-template>
         <mat-form-field>
           <input matInput placeholder="Repeat password" formControlName="repeatPassword" required type="password">
+        </mat-form-field>
+        <div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="personalInfo">
+      <form [formGroup]="personalInfo">
+        <ng-template matStepLabel>Enter your Personal Info</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="name" formControlName="name" required type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="surname" formControlName="surname" required type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="profile photo" formControlName="profilePhoto" required type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="cover photo" formControlName="coverPhoto" required type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="email" formControlName="emailProfile" required type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="location" formControlName="location" required type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="birthday" formControlName="birthday" required type="date">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="bio" formControlName="bio" required type="text">
         </mat-form-field>
         <div>
           <button mat-raised-button matStepperPrevious>Back</button>

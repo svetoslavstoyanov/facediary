@@ -1,0 +1,23 @@
+<div *ngFor="let profile of profiles | async">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
+      </div>
+      <mat-card-title>{{profile.name }} {{profile.surname}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src={{profile.coverPhoto}} alt="cover photo">
+    <mat-card-content>
+      <p>E-mail: {{profile.emailProfile}}
+
+      </p>
+      <p>Location: {{profile.location}}</p>
+      <p>BIO: {{profile.bio }}</p>
+      <p>birthday: {{profile.birthday}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
