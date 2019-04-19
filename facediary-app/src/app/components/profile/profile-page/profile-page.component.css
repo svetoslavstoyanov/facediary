@@ -8,3 +8,9 @@
   width: 35px;
   border-radius: 25px;
 }
+
+.cover-photo,
+mat-card-image {
+  width: 400px;
+  height: 300px;
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/core/services/profile.service';
+import { AuthService } from './../../../core/services/auth.service';
+import { auth } from 'firebase';
 
 @Component({
   selector: 'app-profile-personal',

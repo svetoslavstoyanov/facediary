@@ -9,12 +9,13 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
-import { HomeComponent } from './components/home/home/home.component';
+import { HomeComponent } from './components/home/home.component';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyFireStoreModule } from './core/modules/firebase.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfilePageComponent } from './components/profile/profile-page/profile-page.component';
 import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
 import { ProfilePersonalComponent } from './components/profile/profile-personal/profile-personal.component';
@@ -31,7 +32,7 @@ import { ProfilePersonalComponent } from './components/profile/profile-personal/
     ProfilePageComponent,
     ProfileEditComponent,
     ProfilePersonalComponent,
-    ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,7 +43,9 @@ import { ProfilePersonalComponent } from './components/profile/profile-personal/
     MyFireStoreModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

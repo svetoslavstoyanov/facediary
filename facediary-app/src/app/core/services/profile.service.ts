@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { environment } from './../../../environments/environment';
 import { Profiles } from './../models/profile.model';
 import { personalProfile } from '../models/personalProfile.model';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 
 const baseUrl = `${environment.firebase.databaseURL}/profiles/`
@@ -13,7 +15,8 @@ const baseUrl = `${environment.firebase.databaseURL}/profiles/`
 })
 export class ProfileService {
     constructor(
-        private http: HttpClient
+        private http: HttpClient, private router: Router,
+        private authService: AuthService
     ) { }
 
     getAllProfiles() {
@@ -44,16 +47,20 @@ export class ProfileService {
                         res[i].emailProfile, res[i].location,
                         res[i].birthday, res[i].bio
                     ));
-                } 
+                }
                 let arr = []
                 let personalProfile = profiles
                     .find(profile => profile.emailProfile === `${localStorage.getItem('email')}`)
-                    arr.push(personalProfile)
+                arr.push(personalProfile)
                 return arr;
             }));
     }
 
     createProfile(body: personalProfile) {
         return this.http.post(`${baseUrl}.json`, body);
+    }
+    editProfile(body) {
+        let token = this.authService.getToken()
+        return this.http.patch(`${baseUrl}.json?auth=${token}`, body)
     }
 }

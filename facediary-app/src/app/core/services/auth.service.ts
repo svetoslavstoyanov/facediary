@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  token: string;
+  token: String;
   constructor(private toastr: MatSnackBar, private router: Router) { }
 
   register(email: string, password: string) {
@@ -56,12 +56,9 @@ export class AuthService {
     this.token = null;
   }
   getToken() {
-    firebase
-      .auth()
-      .currentUser.getIdToken()
-      .then((token: string) => {
-        this.token = token;
-      });
+    firebase.auth().currentUser.getIdTokenResult().then(data => {
+      this.token = data.token
+    })
     return this.token;
   }
   isAuthenticated(): boolean {

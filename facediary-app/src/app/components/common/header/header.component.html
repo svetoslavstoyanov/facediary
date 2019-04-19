@@ -1,16 +1,16 @@
 <mat-toolbar color='primary'>
   <div>
     <a routerLink='/'>
-      <mat-icon>forum</mat-icon>
+      <mat-icon inline=true>forum</mat-icon>
       Facediary
     </a></div>
   <ul fxFlex fxLayout fxLayoutGap='10px' fxLayoutAlign='flex-end'>
     <li *ngIf="!authService.isAuthenticated()"><a routerLink='/login' routerLinkActive='active'>
-        <mat-icon>person</mat-icon>
+        <mat-icon inline=true>person</mat-icon>
         Login
       </a></li>
     <li *ngIf="!authService.isAuthenticated()"><a routerLink='/register' routerLinkActive='active'>
-        <mat-icon>person_add</mat-icon>
+        <mat-icon inline=true>person_add</mat-icon>
         Register
       </a></li>
     <li *ngIf="authService.isAuthenticated()"><a routerLink='/profiles' routerLinkActive='active'>All profile</a></li>

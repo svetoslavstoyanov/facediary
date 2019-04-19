@@ -5,32 +5,38 @@
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fill out your e-mail</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="E-mail" formControlName="email" required type="email">
-        </mat-form-field>
-        <div>
-          <button mat-raised-button matStepperNext>Next</button>
+        <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+          <mat-form-field>
+            <input matInput placeholder="E-mail" formControlName="email" required type="email">
+          </mat-form-field>
+          <div>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Enter your Password</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Password" formControlName="password" required type="password">
-        </mat-form-field>
-        <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext>Next</button>
+        <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+          <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" required type="password">
+          </mat-form-field>
+          <div>
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
         </div>
       </form>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-      Press submit to login.
-      <div>
-        <button mat-raised-button matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary">Submit</button>
+      <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+        <p>Press submit to login.</p>
+        <div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary">Submit</button>
+        </div>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

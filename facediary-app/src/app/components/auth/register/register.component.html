@@ -5,10 +5,10 @@
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fill out your e-mail</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="E-mail" formControlName="email" required type="text">
-        </mat-form-field>
-        <div>
+        <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+          <mat-form-field>
+            <input matInput placeholder="E-mail" formControlName="email" required type="text">
+          </mat-form-field>
           <button mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
@@ -16,66 +16,75 @@
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Enter your Password</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Password" formControlName="password" required type="password">
-        </mat-form-field>
-        <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext>Next</button>
+        <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+          <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" required type="password">
+          </mat-form-field>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
         </div>
       </form>
     </mat-step>
     <mat-step>
       <form [formGroup]="thirthFormGroup">
         <ng-template matStepLabel>Repeat Password</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Repeat password" formControlName="repeatPassword" required type="password">
-        </mat-form-field>
-        <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext>Next</button>
+        <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+          <mat-form-field>
+            <input matInput placeholder="Repeat password" formControlName="repeatPassword" required type="password">
+          </mat-form-field>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="personalInfo">
       <form [formGroup]="personalInfo">
         <ng-template matStepLabel>Enter your Personal Info</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="name" formControlName="name" required type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="surname" formControlName="surname" required type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="profile photo" formControlName="profilePhoto" required type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="cover photo" formControlName="coverPhoto" required type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="email" formControlName="emailProfile" required type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="location" formControlName="location" required type="text">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="birthday" formControlName="birthday" required type="date">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="bio" formControlName="bio" required type="text">
-        </mat-form-field>
-        <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext>Next</button>
+        <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+
+          <mat-form-field>
+            <input matInput placeholder="name" formControlName="name" required type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="surname" formControlName="surname" required type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="profile photo" formControlName="profilePhoto" required type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="cover photo" formControlName="coverPhoto" required type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="email" formControlName="emailProfile" required type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="location" formControlName="location" required type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="birthday" formControlName="birthday" required type="date">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="bio" formControlName="bio" required type="text">
+          </mat-form-field>
+          <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
         </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      Press submit to register.
-      <div>
-        <button mat-raised-button matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary">Submit</button>
+      <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>Press submit to register.</p>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary">Submit</button>
+        </div>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
