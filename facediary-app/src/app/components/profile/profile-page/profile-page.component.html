@@ -1,5 +1,5 @@
-<div fxFlex fxLayout  fxLayoutAlign='space-evenly center' *ngFor="let profile of profiles | async">
-  <div>
+<div fxFlex fxLayout fxLayoutAlign='space-evenly center' *ngFor="let profile of profiles | async">
+  <a routerLink='/profiles/{{profile.id}}'>
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar>
@@ -9,17 +9,10 @@
       </mat-card-header>
       <img class="cover-photo" mat-card-image src={{profile.coverPhoto}} alt="cover photo">
       <mat-card-content>
-        <p>E-mail: {{profile.emailProfile}}
-
-        </p>
-        <p>Location: {{profile.location}}</p>
-        <p>BIO: {{profile.bio }}</p>
-        <p>birthday: {{profile.birthday}}</p>
+        <p><strong>E-mail:</strong> {{profile.emailProfile}}</p>
+        <p><strong>Location:</strong> {{profile.location}}</p>
+        <p><strong>birthday:</strong> {{profile.birthday}}</p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
     </mat-card>
-  </div>
+  </a>
 </div>

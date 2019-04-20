@@ -1,6 +1,6 @@
 .example-card {
   max-width: 400px;
-  margin: 10px auto;
+  margin: 30px auto;
 }
 
 .example-header-image {
@@ -11,6 +11,18 @@
 
 .cover-photo,
 mat-card-image {
-  width: 400px;
-  height: 300px;
+  width: 350px;
+  height: 250px;
+}
+
+.example-card {
+  transition: all .2s ease-in-out;
+}
+
+.example-card:hover {
+  transform: scale(1.1);
+}
+
+* {
+  text-decoration: none;
 }

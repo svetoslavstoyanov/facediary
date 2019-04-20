@@ -1,0 +1,17 @@
+<mat-card *ngIf="profile" class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
+    </div>
+    <mat-card-title>{{profile.name }} {{profile.surname}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>E-mail:</strong> {{profile.emailProfile}}</p>
+    <p><strong>Location:</strong> {{profile.location}}</p>
+    <p><strong>BIO:</strong> {{profile.bio }}</p>
+    <p><strong>birthday:</strong> {{profile.birthday}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Like</button>
+  </mat-card-actions>
+</mat-card>

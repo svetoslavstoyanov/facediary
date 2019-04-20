@@ -1,11 +1,33 @@
 .example-card {
-    max-width: 400px;
-    margin: 10px auto;
-  }
-  
-  .example-header-image {
-    height: 35px;
-    width: 35px;
-    border-radius: 25px;
-  }
-  
+  max-width: 400px;
+  margin: 10px auto;
+}
+
+.example-header-image {
+  height: 35px;
+  width: 35px;
+  border-radius: 25px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 130px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 14px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

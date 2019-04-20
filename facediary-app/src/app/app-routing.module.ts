@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
 import { ProfilePersonalComponent } from './components/profile/profile-personal/profile-personal.component';
 import { ProfilePageComponent } from './components/profile/profile-page/profile-page.component';
+import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'profiles', component: ProfilePageComponent },
     { path: 'profile/edit', component: ProfileEditComponent },
     { path: 'Ownprofile', component: ProfilePersonalComponent },
+    { path: 'profiles/:id', component: ProfileViewComponent }
 ];
 
 @NgModule({

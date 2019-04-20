@@ -7,21 +7,15 @@
       </div>
       <mat-card-title>{{profile.name }} {{profile.surname}}</mat-card-title>
       <a routerLink='/profile/edit'>
-        <mat-icon>edit</mat-icon>
+        <mat-icon class="tooltip">edit <span class="tooltiptext">Click to edit profile</span></mat-icon>
       </a>
     </mat-card-header>
     <img mat-card-image src={{profile.coverPhoto}} alt="cover photo">
     <mat-card-content>
-      <p>E-mail: {{profile.emailProfile}}
-
-      </p>
-      <p>Location: {{profile.location}}</p>
-      <p>BIO: {{profile.bio }}</p>
-      <p>birthday: {{profile.birthday}}</p>
+      <p><strong>E-mail:</strong> {{profile.emailProfile}}</p>
+      <p><strong>Location:</strong> {{profile.location}}</p>
+      <p><strong>BIO:</strong> {{profile.bio }}</p>
+      <p><strong>birthday:</strong> {{profile.birthday}}</p>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
   </mat-card>
 </div>

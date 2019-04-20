@@ -19,6 +19,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfilePageComponent } from './components/profile/profile-page/profile-page.component';
 import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
 import { ProfilePersonalComponent } from './components/profile/profile-personal/profile-personal.component';
+import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ProfilePersonalComponent } from './components/profile/profile-personal/
     ProfilePageComponent,
     ProfileEditComponent,
     ProfilePersonalComponent,
+    ProfileViewComponent,
   ],
   imports: [
     BrowserModule,
