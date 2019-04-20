@@ -1,0 +1,17 @@
+img {
+  width: 40%;
+  height: 40%;
+  box-shadow: 7px 9px 22px 1px rgba(0, 0, 0, 0.56);
+  margin-left: 5%;
+  margin-top: 7%;
+}
+
+.rotateimg180 {
+  transform: rotate(-10deg);
+}
+
+#home-text {
+  max-width: 100%;
+  width: 500px;
+  font-size: 22px;
+}
