@@ -7,7 +7,7 @@
       </div>
       <mat-card-title>{{profile.name }} {{profile.surname}}</mat-card-title>
       <a routerLink='/profile/edit'>
-        <mat-icon class="tooltip">edit <span class="tooltiptext">Click to edit profile</span></mat-icon>
+        <mat-icon class="tooltip" matTooltip="press to edit profile">edit</mat-icon>
       </a>
     </mat-card-header>
     <img mat-card-image src={{profile.coverPhoto}} alt="cover photo">

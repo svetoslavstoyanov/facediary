@@ -1,5 +1,5 @@
-<div fxFlex fxLayout fxLayoutAlign='space-evenly center' *ngFor="let profile of profiles | async">
-  <a routerLink='/profiles/{{profile.id}}'>
+<div id="profile-container" class="flex-container" *ngFor="let profile of profiles | async">
+  <a class="flex-item" routerLink='/profiles/{{profile.id}}'>
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar>

@@ -12,6 +12,20 @@
     <p><strong>birthday:</strong> {{profile.birthday}}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary">Like</button>
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <form [formGroup]="likeProfile" (ngSubmit)="likeProfilef()">
+        <input placeholder="name" formControlName="email" type="hidden">
+        <button *ngIf="!isLiked" mat-raised-button color="primary" matBadge="{{likes}}" matBadgePosition="before"
+          matBadgeColor="accent">Like</button>
+          <button *ngIf="isLiked" mat-raised-button color="warn" matBadge="{{likes}}" matBadgePosition="before"
+          matBadgeColor="accent">DisLike</button>
+      </form>
+      <form id="comment-form" [formGroup]="commentProfile" (ngSubmit)="postComment()">
+        <mat-form-field class="example-full-width">
+          <textarea matInput formControlName="comment" placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Comment</button>
+      </form>
+    </div>
   </mat-card-actions>
 </mat-card>

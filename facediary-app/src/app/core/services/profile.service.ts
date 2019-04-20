@@ -51,11 +51,11 @@ export class ProfileService {
                 let arr = []
                 let personalProfile = profiles
                     .find(profile => profile.emailProfile === `${localStorage.getItem('email')}`)
+                localStorage.setItem('name', personalProfile['name'] + '')
                 arr.push(personalProfile)
                 return arr;
             }));
     }
-
     createProfile(body: personalProfile) {
         return this.http.post(`${baseUrl}.json`, body);
     }
@@ -67,4 +67,5 @@ export class ProfileService {
         let token = this.authService.getToken()
         return this.http.get<Profiles>(`${baseUrl}${profileId}/.json?auth=${token}`);
     }
+
 }

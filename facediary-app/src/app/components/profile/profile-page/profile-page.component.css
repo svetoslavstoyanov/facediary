@@ -1,6 +1,14 @@
+* {
+  text-decoration: none;
+}
+
 .example-card {
   max-width: 400px;
-  margin: 30px auto;
+  transition: all .2s ease-in-out;
+}
+
+.example-card:hover {
+  transform: scale(1.1);
 }
 
 .example-header-image {
@@ -15,14 +23,11 @@ mat-card-image {
   height: 250px;
 }
 
-.example-card {
-  transition: all .2s ease-in-out;
+.flex-container {
+  display: inline-flex;
+
 }
 
-.example-card:hover {
-  transform: scale(1.1);
-}
-
-* {
-  text-decoration: none;
+.flex-item {
+  margin: 3em;
 }

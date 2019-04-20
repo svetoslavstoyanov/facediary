@@ -35,7 +35,7 @@ export class AuthService {
             this.token = token;
           });
         localStorage.setItem('email', email)
-        this.router.navigate(['/Ownprofile']);
+        this.router.navigate(['/profiles']);
         this.toastr.open('Logged In', 'Success', {
           duration: 1000
         });
@@ -47,10 +47,12 @@ export class AuthService {
       });
   }
   logout() {
+    localStorage.clear()
     firebase
       .auth()
       .signOut()
       .then(() => {
+
         this.router.navigate(['/login']);
       });
     this.token = null;
