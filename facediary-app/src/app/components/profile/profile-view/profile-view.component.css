@@ -35,7 +35,14 @@ a {
   width: 150px;
 }
 
-ul,
-li {
-  list-style-type: none;
+.comment-card {
+  margin-bottom: 10px;
+}
+
+.mat-card-header .mat-card-title {
+  font-size: 18px;
+}
+
+.comment-holder {
+  font-size: 14px;
 }

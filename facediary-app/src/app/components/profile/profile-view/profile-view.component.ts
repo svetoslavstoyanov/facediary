@@ -60,7 +60,6 @@ export class ProfileViewComponent implements OnInit {
           for (const [key, value] of Object.entries(data)) {
             this.likes = 0
             let isLiked = false
-            console.log(data)
             if (value['comments']) {
               this.comments = Object.entries(value['comments'])
             }
