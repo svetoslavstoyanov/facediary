@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LikeService } from 'src/app/core/services/like.service';
 import { PostsService } from 'src/app/core/services/posts.service';
+import { MatSnackBar } from '@angular/material';
+import { AdminService } from 'src/app/core/services/admin.service';
 
 @Component({
   selector: 'app-profile-view',
@@ -21,15 +23,23 @@ export class ProfileViewComponent implements OnInit {
   posts = []
   isPosts: boolean = false
   comments
+  isAdmin: boolean = false
+  deleteProfileFormGroup: FormGroup
+  deletePostFormGroup: FormGroup
+  deleteCommentFormGroup: FormGroup
+
   constructor(private profileService: ProfileService,
     private likeService: LikeService,
     private route: ActivatedRoute,
     private router: Router,
     private _formBuilder: FormBuilder,
-    private postsService: PostsService) { }
+    private postsService: PostsService,
+    private toastr: MatSnackBar,
+    private adminService: AdminService
+  ) { }
 
   ngOnInit() {
-
+    
     this.likeProfile = this._formBuilder.group({
       email: [localStorage.getItem('name'), Validators.required],
     })
@@ -37,6 +47,12 @@ export class ProfileViewComponent implements OnInit {
     this.dislikeProfile = this._formBuilder.group({
       email: ['', Validators.required],
     })
+
+    this.profileService.getPersonalProfile()
+      .subscribe(data => {
+        this.isAdmin = data[0]['isAdmin']
+      })
+
     this.profileService.getPersonalProfile()
       .subscribe(data => {
         this.commentProfile = this._formBuilder.group({
@@ -82,8 +98,8 @@ export class ProfileViewComponent implements OnInit {
           this.posts.push({ id: '0', post: 'No posts' })
         }
       }
-
       )
+
   }
   likeProfilef(postId) {
     let email = localStorage.getItem('email')
@@ -92,7 +108,7 @@ export class ProfileViewComponent implements OnInit {
     }
     this.likeService.postLike(body, postId, this.id)
       .subscribe(() => {
-        this.router.navigate([`/profiles/`]);
+        this.router.navigate([`/profiles/all`]);
       })
   }
 
@@ -102,8 +118,8 @@ export class ProfileViewComponent implements OnInit {
         if (e[1]['email'] == localStorage.getItem('email')) {
           let likeId = e[0]
           this.likeService.deleteLike(likeId, postId, this.id).subscribe(
-            data => {
-              this.router.navigate([`/profiles/`]);
+            () => {
+              this.router.navigate([`/profiles/all`]);
             })
         }
       })
@@ -111,9 +127,43 @@ export class ProfileViewComponent implements OnInit {
   }
   postComment(postId) {
     let result = this.commentProfile.value
+    console.log(result)
     this.postsService.commentPost(result, this.id, postId)
       .subscribe(() => {
-        this.router.navigate([`/profiles/`]);
+        this.router.navigate([`/profiles/all`]);
       })
+  }
+
+  deleteProfilef() {
+    this.adminService.deleteProfile(this.id)
+      .subscribe(() => {
+        this.toastr.open('Profile Deleted!', 'Success', {
+          duration: 1000
+        });
+        this.router.navigate(['/']);
+      })
+  }
+  deletePostf(postId) {
+    this.adminService.deletePost(this.id, postId)
+      .subscribe(() => {
+        this.toastr.open('Post Deleted!', 'Success', {
+          duration: 1000
+        });
+        this.router.navigate(['/profiles/all']);
+      })
+  }
+  deleteCommentf(postId, commentId) {
+    this.adminService.deleteComment(this.id, postId, commentId)
+      .subscribe((data) => {
+        console.log(data)
+        console.log(this.id)
+        console.log(postId)
+        console.log(commentId)
+        this.toastr.open('Comment Deleted!', 'Success', {
+          duration: 1000
+        });
+        this.router.navigate(['/profiles/all']);
+      })
+
   }
 }

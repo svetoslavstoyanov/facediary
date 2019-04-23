@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Profiles } from '../../../core/models/profile.model';
 import { ProfileService } from 'src/app/core/services/profile.service';
 
 @Component({
@@ -9,15 +7,13 @@ import { ProfileService } from 'src/app/core/services/profile.service';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit {
-  profiles: Observable<Profiles[]>
+  profiles: any
+  isAdmin: boolean = false
 
   constructor(private profileService: ProfileService) { }
 
-
-
   ngOnInit() {
-    this.profiles = this.profileService.getAllProfiles()
-
+    this.profileService.getAllProfiles()
+      .subscribe(data => this.profiles = data)
   }
-
 }

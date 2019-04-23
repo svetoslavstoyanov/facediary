@@ -5,6 +5,10 @@
         <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
       </div>
       <mat-card-title>{{profile.name }} {{profile.surname}}</mat-card-title>
+
+      <button mat-raised-button (click)="deleteProfilef()" *ngIf="isAdmin">
+        <mat-icon class="tooltip" matTooltip="press to delete profile">delete</mat-icon>
+      </button>
     </mat-card-header>
     <mat-card-content>
       <p><strong>E-mail:</strong> {{profile.emailProfile}}</p>
@@ -20,6 +24,10 @@
           <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
         </div>
         <p>{{post.post}}</p>
+        <button mat-raised-button (click)="deletePostf(post.id)" *ngIf="isAdmin">
+          <mat-icon class="tooltip" matTooltip="press to delete post">delete</mat-icon>
+        </button>
+
       </mat-card-header>
 
       <mat-card-actions *ngIf="isPosts">
@@ -50,7 +58,12 @@
             <div mat-card-avatar>
               <img class="example-header-image" src={{comment[1].profilePhoto}} alt="Photo">
             </div>
-            <mat-card-title><strong>{{comment[1].name}}</strong></mat-card-title>
+            <mat-card-title>{{comment[1].name}}</mat-card-title>
+
+            <button (click)="deleteCommentf(post.id, comment[0])" *ngIf="isAdmin" mat-raised-button>
+              <mat-icon class="tooltip" matTooltip="press to delete comment">delete</mat-icon>
+            </button>
+
           </mat-card-header>
           <p class="comment-holder"> {{comment[1].comment}}</p>
         </mat-card>

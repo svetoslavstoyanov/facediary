@@ -28,29 +28,31 @@
       </div>
     </form>
   </mat-card>
-  <mat-card class="example-card" *ngFor="let post of posts">
-    <mat-card-header>
-      <div mat-card-avatar>
-        <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
-      </div>
-      <span class="post-holder">{{post.post}}</span>
-      <form (ngSubmit)="deletePost(post.id)" [formGroup]="deletePostFormGroup">
-        <button type="submit" mat-raised-button>
-          <mat-icon class="tooltip" matTooltip="press to delete post">delete</mat-icon>
-        </button>
-      </form>
-    </mat-card-header>
-    <hr>
-    <div *ngFor="let comment of post.comments">
-      <mat-card class="comment-card">
+<div *ngIf="posts">
+    <mat-card class="example-card" *ngFor="let post of posts">
         <mat-card-header>
           <div mat-card-avatar>
-            <img class="example-header-image" src={{comment[1].profilePhoto}} alt="Photo">
+            <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
           </div>
-          <mat-card-title><strong>{{comment[1].name}}</strong></mat-card-title>
+          <span class="post-holder">{{post.post}}</span>
+          <form (ngSubmit)="deletePost(post.id)" [formGroup]="deletePostFormGroup">
+            <button type="submit" mat-raised-button>
+              <mat-icon class="tooltip" matTooltip="press to delete post">delete</mat-icon>
+            </button>
+          </form>
         </mat-card-header>
-        <p class="comment-holder"> {{comment[1].comment}}</p>
+        <hr>
+        <div *ngFor="let comment of post.comments">
+          <mat-card class="comment-card">
+            <mat-card-header>
+              <div mat-card-avatar>
+                <img class="example-header-image" src={{comment[1].profilePhoto}} alt="Photo">
+              </div>
+              <mat-card-title><strong>{{comment[1].name}}</strong></mat-card-title>
+            </mat-card-header>
+            <p class="comment-holder"> {{comment[1].comment}}</p>
+          </mat-card>
+        </div>
       </mat-card>
-    </div>
-  </mat-card>
+</div>
 </div>

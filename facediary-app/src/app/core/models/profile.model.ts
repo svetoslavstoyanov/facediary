@@ -9,6 +9,7 @@ export class Profiles {
         public location: String,
         public birthday: Date,
         public bio: String,
-        public posts: Object
+        public posts: Object,
+        public isAdmin: String
     ) { }
 }

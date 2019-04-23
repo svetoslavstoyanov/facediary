@@ -29,7 +29,8 @@ export class ProfileService {
                         res[i].name, res[i].surname,
                         res[i].profilePhoto, res[i].coverPhoto,
                         res[i].emailProfile, res[i].location,
-                        res[i].birthday, res[i].bio, res[i].posts
+                        res[i].birthday, res[i].bio, res[i].posts,
+                        res[i].isAdmin
                     ));
                 }
                 return profiles;
@@ -45,7 +46,8 @@ export class ProfileService {
                         res[i].name, res[i].surname,
                         res[i].profilePhoto, res[i].coverPhoto,
                         res[i].emailProfile, res[i].location,
-                        res[i].birthday, res[i].bio, res[i].posts
+                        res[i].birthday, res[i].bio, res[i].posts,
+                        res[i].isAdmin
                     ));
                 }
                 let arr = []

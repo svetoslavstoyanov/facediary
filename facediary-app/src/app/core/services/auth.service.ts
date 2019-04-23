@@ -17,8 +17,8 @@ export class AuthService {
     firebase
       .auth()
       .createUserAndRetrieveDataWithEmailAndPassword(email, password)
-      .then(data => {
-        this.toastr.open('Signed Up!', 'Success', {
+      .then(() => {
+        this.toastr.open('Registered!', 'Success', {
           duration: 1000
         });
         this.router.navigate(['/login']);
@@ -31,7 +31,7 @@ export class AuthService {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(data => {
+      .then(() => {
         firebase
           .auth()
           .currentUser.getIdToken()

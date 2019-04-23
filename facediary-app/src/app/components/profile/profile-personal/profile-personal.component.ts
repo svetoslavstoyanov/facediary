@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/core/services/profile.service';
-import { AuthService } from './../../../core/services/auth.service';
-import { auth } from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostsService } from 'src/app/core/services/posts.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-profile-personal',
@@ -21,10 +20,18 @@ export class ProfilePersonalComponent implements OnInit {
   constructor(private profileService: ProfileService,
     private _formBuilder: FormBuilder,
     private postService: PostsService,
-    private router: Router
+    private router: Router,
+    private toastr: MatSnackBar
   ) { }
 
   ngOnInit() {
+    this.postFormGroup = this._formBuilder.group({
+      post: ['', Validators.required]
+    })
+    this.deletePostFormGroup = this._formBuilder.group({
+      postId: ['', Validators.required]
+    })
+
     this.profileService.getPersonalProfile().subscribe(data => {
       this.profile = data[0]
       this.postService.getPosts(this.profile.id).subscribe(
@@ -39,12 +46,7 @@ export class ProfilePersonalComponent implements OnInit {
         }
       )
     })
-    this.postFormGroup = this._formBuilder.group({
-      post: ['', Validators.required]
-    })
-    this.deletePostFormGroup = this._formBuilder.group({
-      postId: ['', Validators.required]
-    })
+
   }
   post() {
     let post = this.postFormGroup.value['post']
@@ -53,13 +55,19 @@ export class ProfilePersonalComponent implements OnInit {
     }
     this.postService.createPost(body, this.profile.id).subscribe(
       () => {
-        console.log(body)
-        this.router.navigate(['/profiles'])
+        this.toastr.open('Successfull post!', '', {
+          duration: 1000
+        })
+        this.router.navigate(['/profiles/all'])
       }
     )
   }
   deletePost(postId) {
-    this.postService.deletePost(postId, this.profile.id).subscribe(data => {
+    this.postService.deletePost(postId, this.profile.id).subscribe(() => {
+      this.toastr.open('Successfull delete!', '', {
+        duration: 1000
+      })
+      this.router.navigate['/profiles/all']
     })
   }
 

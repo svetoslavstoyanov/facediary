@@ -1,5 +1,6 @@
 * {
   text-decoration: none;
+  color: black;
 }
 
 .example-card {
@@ -27,7 +28,6 @@ mat-card-image {
   display: inline-flex;
 
 }
-
 
 @media only screen and (min-width: 768px) {
   .flex-item {

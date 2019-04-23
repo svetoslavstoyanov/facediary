@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../../../core/services/auth.service';
 import { ProfileService } from 'src/app/core/services/profile.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,9 @@ export class RegisterComponent implements OnInit {
   thirthFormGroup: FormGroup;
   personalInfo: FormGroup
   constructor(private _formBuilder: FormBuilder,
-    private authService: AuthService, private profileService: ProfileService) { }
+    private authService: AuthService,
+     private profileService: ProfileService,
+     private toastr: MatSnackBar) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -35,7 +38,8 @@ export class RegisterComponent implements OnInit {
       emailProfile: ['', Validators.required],
       location: ['', Validators.required],
       birthday: ['', Validators.required],
-      bio: ['', Validators.required]
+      bio: ['', Validators.required],
+      isAdmin: ['false', Validators.required]
     })
     this.registerForm = this._formBuilder.group({})
 
@@ -44,8 +48,14 @@ export class RegisterComponent implements OnInit {
     let email = this.firstFormGroup.value.email
     let password = this.secondFormGroup.value.password
     let repeatPassword = this.thirthFormGroup.value.repeatPassword
+    if (password !== repeatPassword) {
+      this.toastr.open('Passwords must match!', 'Error', {
+        duration: 1000
+      })
+    } else {
+      this.profileService.createProfile(this.personalInfo.value).subscribe()
 
-    this.profileService.createProfile(this.personalInfo.value).subscribe()
+    }
     this.authService.register(email, password)
   }
 }
