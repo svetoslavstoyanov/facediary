@@ -8,6 +8,7 @@ export class Profiles {
         public emailProfile: String,
         public location: String,
         public birthday: Date,
-        public bio: String
+        public bio: String,
+        public posts: Object
     ) { }
 }

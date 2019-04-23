@@ -29,7 +29,6 @@ export class ProfilePersonalComponent implements OnInit {
       this.profile = data[0]
       this.postService.getPosts(this.profile.id).subscribe(
         data => {
-
           for (const [key, value] of Object.entries(data)) {
             if (value['comments']) {
               this.comments = Object.entries(value['comments'])
@@ -37,7 +36,6 @@ export class ProfilePersonalComponent implements OnInit {
             this.posts.push({ id: key, post: value['post'], comments: this.comments })
             this.comments = ''
           }
-          console.log(this.posts)
         }
       )
     })

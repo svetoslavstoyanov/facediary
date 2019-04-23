@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
       .subscribe(data => {
         this.profile = data[0]
       })
-
   }
   logout() {
     this.authService.logout();

@@ -35,7 +35,7 @@ export class AuthService {
             this.token = token;
           });
         localStorage.setItem('email', email)
-        this.router.navigate(['/profiles']);
+        this.router.navigate(['/profiles/all']);
         this.toastr.open('Logged In', 'Success', {
           duration: 1000
         });

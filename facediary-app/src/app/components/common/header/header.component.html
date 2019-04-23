@@ -13,11 +13,11 @@
         <mat-icon inline=true>person_add</mat-icon>
         Register
       </a></li>
-    <li *ngIf="authService.isAuthenticated() && profile"><a routerLink='/Ownprofile' routerLinkActive='active'>
+    <li *ngIf="authService.isAuthenticated() && profile"><a routerLink='/profiles/my' routerLinkActive='active'>
         <img class="profile-image" src="{{profile.profilePhoto}}" alt="">
         <span>{{profile.name}}</span>
       </a></li>
-    <li *ngIf="authService.isAuthenticated()"><a routerLink='/profiles' routerLinkActive='active'>All profiles</a></li>
+    <li *ngIf="authService.isAuthenticated()"><a routerLink='/profiles/all' routerLinkActive='active'>All profiles</a></li>
     <li *ngIf="authService.isAuthenticated()"><a (click)="logout()" id="logout" routerLinkActive='active'>Logout</a>
     </li>
   </ul>

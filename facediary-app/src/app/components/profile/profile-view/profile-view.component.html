@@ -25,11 +25,13 @@
       <mat-card-actions *ngIf="isPosts">
         <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
           <form *ngIf="!post.isLiked" [formGroup]="likeProfile" (ngSubmit)="likeProfilef(post.id)">
+            <input type="hidden" formControlName='email'>
             <button mat-raised-button color="primary" matBadge="{{post.likes}}" matBadgePosition="before"
               matBadgeColor="accent">Like</button>
           </form>
 
           <form *ngIf="post.isLiked" [formGroup]="dislikeProfile" (ngSubmit)="dislikeProfilef(post.id)">
+            <input type="hidden" formControlName='email'>
             <button mat-raised-button color="warn" matBadge="{{post.likes}}" matBadgePosition="before"
               matBadgeColor="accent">Dislike</button>
           </form>

@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit {
     let repeatPassword = this.thirthFormGroup.value.repeatPassword
 
     this.profileService.createProfile(this.personalInfo.value).subscribe()
-
     this.authService.register(email, password)
   }
 }

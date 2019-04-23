@@ -12,14 +12,11 @@ import { FooterComponent } from './components/common/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MyFireStoreModule } from './core/modules/firebase.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ProfilePageComponent } from './components/profile/profile-page/profile-page.component';
-import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
-import { ProfilePersonalComponent } from './components/profile/profile-personal/profile-personal.component';
-import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProfileModule } from './components/profile/profile.module';
 
 
 @NgModule({
@@ -30,15 +27,13 @@ import { ProfileViewComponent } from './components/profile/profile-view/profile-
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    ProfilePageComponent,
-    ProfileEditComponent,
-    ProfilePersonalComponent,
-    ProfileViewComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ProfileModule,
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,

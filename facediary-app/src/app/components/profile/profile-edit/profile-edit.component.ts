@@ -21,7 +21,7 @@ export class ProfileEditComponent implements OnInit {
   ngOnInit() {
     this.profileService.getPersonalProfile().subscribe(data => {
       this.profile = data[0]
-
+      console.log(data[0])
       this.personalInfo = this._formBuilder.group({
         name: [this.profile.name, Validators.required],
         surname: [this.profile.surname, Validators.required],
@@ -30,7 +30,8 @@ export class ProfileEditComponent implements OnInit {
         emailProfile: [this.profile.emailProfile, Validators.required],
         location: [this.profile.location, Validators.required],
         birthday: [this.profile.birthday, Validators.required],
-        bio: [this.profile.bio, Validators.required]
+        bio: [this.profile.bio, Validators.required],
+        posts: [data[0]['posts']]
       })
     })
   }
@@ -39,7 +40,7 @@ export class ProfileEditComponent implements OnInit {
       [this.profile.id]: this.personalInfo.value
     }
     this.profileService.editProfile(body).subscribe(data => {
-      this.router.navigate(['/Ownprofile']);
+      this.router.navigate(['/profiles/my']);
       this.toastr.open('Successfully updated!', '', {
         duration: 1000
       })

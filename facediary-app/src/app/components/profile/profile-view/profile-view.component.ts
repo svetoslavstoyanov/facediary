@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/core/services/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { isObject } from 'util';
 import { LikeService } from 'src/app/core/services/like.service';
 import { PostsService } from 'src/app/core/services/posts.service';
 
