@@ -60,9 +60,11 @@ export class ProfileViewComponent implements OnInit {
           for (const [key, value] of Object.entries(data)) {
             this.likes = 0
             let isLiked = false
-            // if (value['comments']) {
-            //   this.comments = Object.entries(value['comments'])
-            // }
+            console.log(data)
+            if (value['comments']) {
+              this.comments = Object.entries(value['comments'])
+              console.log(value['comments'])
+            }
             if (value['likes']) {
               let obj = value['likes']
               let ol = Object.keys(obj)
@@ -75,20 +77,16 @@ export class ProfileViewComponent implements OnInit {
                 }
               }
             }
-            if (this.likes > 0) {
-              this.posts.push({ id: key, post: value['post'], likes: this.likes, isLiked })
-            } else {
-              this.posts.push({ id: key, post: value['post'], likes: 0, isLiked })
-            }
-            console.log(this.posts)
+            this.posts.push({ id: key, post: value['post'], likes: this.likes, isLiked, comments: this.comments })
+            this.comments = ''
           }
           this.isPosts = true
         } else {
           this.posts.push({ id: '0', post: 'No posts' })
         }
       }
-      )
 
+      )
   }
   likeProfilef(postId) {
     let email = localStorage.getItem('email')

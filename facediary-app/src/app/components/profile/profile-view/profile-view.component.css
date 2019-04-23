@@ -34,3 +34,8 @@ a {
 .name-comment {
   width: 150px;
 }
+
+ul,
+li {
+  list-style-type: none;
+}
