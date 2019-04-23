@@ -9,6 +9,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { MaterialModule } from 'src/app/core/modules/material.module';
 import { FlexModule } from '@angular/flex-layout';
 
+
 @NgModule({
     declarations: [
         ProfilePageComponent,

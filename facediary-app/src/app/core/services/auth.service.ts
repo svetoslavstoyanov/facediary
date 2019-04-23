@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  token: String;
-  constructor(private toastr: MatSnackBar, private router: Router) { }
+  token: string;
+  constructor(private toastr: MatSnackBar,
+    private router: Router,
+    private jwtHelper: JwtHelperService) { }
 
   register(email: string, password: string) {
     firebase
@@ -32,6 +36,7 @@ export class AuthService {
           .auth()
           .currentUser.getIdToken()
           .then((token: string) => {
+            localStorage.setItem('token', token)
             this.token = token;
           });
         localStorage.setItem('email', email)
@@ -64,6 +69,7 @@ export class AuthService {
     return this.token;
   }
   isAuthenticated(): boolean {
-    return this.token != undefined;
+    let storageToken = localStorage.getItem('token')
+    return !this.jwtHelper.isTokenExpired(storageToken);
   }
 }

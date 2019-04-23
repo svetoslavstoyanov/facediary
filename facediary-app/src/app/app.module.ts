@@ -17,7 +17,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MyFireStoreModule } from './core/modules/firebase.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileModule } from './components/profile/profile.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -38,7 +42,14 @@ import { ProfileModule } from './components/profile/profile.module';
     MaterialModule,
     ReactiveFormsModule,
     MyFireStoreModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['example.com'],
+        blacklistedRoutes: ['example.com/examplebadroute/']
+      }
+    })
   ],
   providers: [
 
