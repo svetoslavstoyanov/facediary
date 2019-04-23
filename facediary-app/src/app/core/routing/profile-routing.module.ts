@@ -1,9 +1,9 @@
 import { RouterModule, Route } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { ProfileViewComponent } from './profile-view/profile-view.component';
-import { ProfilePersonalComponent } from './profile-personal/profile-personal.component';
-import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { ProfilePageComponent } from '../../components/profile/profile-page/profile-page.component';
+import { ProfileViewComponent } from '../../components/profile/profile-view/profile-view.component';
+import { ProfilePersonalComponent } from '../../components/profile/profile-personal/profile-personal.component';
+import { ProfileEditComponent } from '../../components/profile/profile-edit/profile-edit.component';
 
 let routes: Route[] = [
     { path: 'all', pathMatch: 'full', component: ProfilePageComponent },

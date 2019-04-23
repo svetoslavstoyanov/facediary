@@ -1,23 +1,22 @@
+//modules:
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './core/modules/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { AppRoutingModule } from './app.routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MyFireStoreModule } from './core/modules/firebase.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ProfileModule } from './core/modules/profile.module';
+import { JwtModule } from '@auth0/angular-jwt';
+//components:
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-
-
-import { AppRoutingModule } from './app.routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MyFireStoreModule } from './core/modules/firebase.module';
-import { HttpClientModule } from '@angular/common/http';
-import { ProfileModule } from './components/profile/profile.module';
-import { JwtModule } from '@auth0/angular-jwt';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -30,9 +29,7 @@ export function tokenGetter() {
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
-
-  ],
+    HomeComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,9 +48,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
