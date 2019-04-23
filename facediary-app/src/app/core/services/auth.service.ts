@@ -55,7 +55,7 @@ export class AuthService {
 
         this.router.navigate(['/login']);
       });
-    this.token = null;
+    this.token = undefined;
   }
   getToken() {
     firebase.auth().currentUser.getIdTokenResult().then(data => {
@@ -64,6 +64,6 @@ export class AuthService {
     return this.token;
   }
   isAuthenticated(): boolean {
-    return this.token !== null;
+    return this.token != undefined;
   }
 }
