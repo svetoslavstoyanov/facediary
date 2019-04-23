@@ -31,3 +31,7 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+span {
+  word-wrap: break-word;
+  width: 250px;
+}

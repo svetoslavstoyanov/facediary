@@ -14,7 +14,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.profileService.getPersonalProfile()
-      .subscribe(data => this.profile = data[0])
+      .subscribe(data => {
+        this.profile = data[0]
+      })
 
   }
   logout() {

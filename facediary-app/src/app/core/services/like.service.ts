@@ -16,10 +16,13 @@ export class LikeService {
     private authService: AuthService
   ) { }
 
-  postLike(body, profileId) {
-    return this.http.post(`${baseUrl}${profileId}/likes/.json`, body);
+  postLike(body, postId, profileId) {
+    return this.http.post(`${baseUrl}${profileId}/posts/${postId}/likes.json`, body);
   }
-  deleteLike(likeId, profileId) {
-    return this.http.delete(`${baseUrl}${profileId}/likes/${likeId}.json`);
+  getPostLikes(postId, profileId) {
+    return this.http.get(`${baseUrl}${profileId}/posts/${postId}/likes/.json`)
+  }
+  deleteLike(likeId, postId, profileId) {
+    return this.http.delete(`${baseUrl}${profileId}/posts/${postId}/likes/${likeId}.json`);
   }
 }

@@ -67,5 +67,4 @@ export class ProfileService {
         let token = this.authService.getToken()
         return this.http.get<Profiles>(`${baseUrl}${profileId}/.json?auth=${token}`);
     }
-
 }

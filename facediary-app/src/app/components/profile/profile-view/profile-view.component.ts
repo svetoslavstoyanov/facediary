@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { isObject } from 'util';
 import { LikeService } from 'src/app/core/services/like.service';
+import { PostsService } from 'src/app/core/services/posts.service';
 
 @Component({
   selector: 'app-profile-view',
@@ -13,61 +14,111 @@ import { LikeService } from 'src/app/core/services/like.service';
 export class ProfileViewComponent implements OnInit {
   id: string
   likeProfile: FormGroup
+  dislikeProfile: FormGroup
   commentProfile: FormGroup
   profile: any
-  isLiked: boolean = false
   likes = 0
+  likeValue = ''
+  posts = []
+  isPosts: boolean = false
+  comments
   constructor(private profileService: ProfileService,
     private likeService: LikeService,
     private route: ActivatedRoute,
     private router: Router,
-    private _formBuilder: FormBuilder) { }
+    private _formBuilder: FormBuilder,
+    private postsService: PostsService) { }
 
   ngOnInit() {
+
     this.likeProfile = this._formBuilder.group({
       email: [localStorage.getItem('name'), Validators.required],
     })
-    this.commentProfile = this._formBuilder.group({
-      comment: ['', Validators.required],
 
+    this.dislikeProfile = this._formBuilder.group({
+      email: ['', Validators.required],
     })
+    this.profileService.getPersonalProfile()
+      .subscribe(data => {
+        this.commentProfile = this._formBuilder.group({
+          id: [data[0].id, Validators.required],
+          name: [data[0].name, Validators.required],
+          profilePhoto: [data[0].profilePhoto, Validators.required],
+          comment: ['', Validators.required]
+        })
+      })
 
     this.id = this.route.snapshot.params['id']
     this.profileService.getProfileById(this.id)
       .subscribe(data => {
-        if (data['likes']) {
-          let obj = data['likes']
-          var ol = Object.keys(obj)
-          this.likes = ol.length
-          for (let value of Object.values(obj)) {
-            if (value['email'] == localStorage.getItem('email')) {
-              this.isLiked = true
-            }
-          }
-        }
         this.profile = data
       })
+
+    this.postsService.getPosts(this.id)
+      .subscribe(data => {
+        if (data) {
+          for (const [key, value] of Object.entries(data)) {
+            this.likes = 0
+            let isLiked = false
+            // if (value['comments']) {
+            //   this.comments = Object.entries(value['comments'])
+            // }
+            if (value['likes']) {
+              let obj = value['likes']
+              let ol = Object.keys(obj)
+              this.likes = ol.length
+              for (let value of Object.values(obj)) {
+                if (value['email'] == localStorage.getItem('email')) {
+                  isLiked = true
+                } else {
+                  isLiked = false
+                }
+              }
+            }
+            if (this.likes > 0) {
+              this.posts.push({ id: key, post: value['post'], likes: this.likes, isLiked })
+            } else {
+              this.posts.push({ id: key, post: value['post'], likes: 0, isLiked })
+            }
+            console.log(this.posts)
+          }
+          this.isPosts = true
+        } else {
+          this.posts.push({ id: '0', post: 'No posts' })
+        }
+      }
+      )
+
   }
-  likeProfilef() {
+  likeProfilef(postId) {
     let email = localStorage.getItem('email')
     let body = {
       email
     }
-    if (!this.isLiked) {
-      this.likeService.postLike(body, this.id)
-        .subscribe(() => {
-          this.router.navigate([`/profiles/`]);
-        })
-    }
-    else {
-      this.likeService.deleteLike('', this.id)
-        .subscribe(() => {
-          this.router.navigate([`/profiles/`]);
-        })
-    }
+    this.likeService.postLike(body, postId, this.id)
+      .subscribe(() => {
+        this.router.navigate([`/profiles/`]);
+      })
   }
 
-  postComment() {
-    console.log(this.commentProfile.value)
+  dislikeProfilef(postId) {
+    this.likeService.getPostLikes(postId, this.id).subscribe(data => {
+      Object.entries(data).forEach(e => {
+        if (e[1]['email'] == localStorage.getItem('email')) {
+          let likeId = e[0]
+          this.likeService.deleteLike(likeId, postId, this.id).subscribe(
+            data => {
+              this.router.navigate([`/profiles/`]);
+            })
+        }
+      })
+    })
+  }
+  postComment(postId) {
+    let result = this.commentProfile.value
+    this.postsService.commentPost(result, this.id, postId)
+      .subscribe(() => {
+        this.router.navigate([`/profiles/`]);
+      })
   }
 }

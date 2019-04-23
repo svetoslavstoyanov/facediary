@@ -1,31 +1,48 @@
-<mat-card *ngIf="profile" class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar>
-      <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
-    </div>
-    <mat-card-title>{{profile.name }} {{profile.surname}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p><strong>E-mail:</strong> {{profile.emailProfile}}</p>
-    <p><strong>Location:</strong> {{profile.location}}</p>
-    <p><strong>BIO:</strong> {{profile.bio }}</p>
-    <p><strong>birthday:</strong> {{profile.birthday}}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
-      <form [formGroup]="likeProfile" (ngSubmit)="likeProfilef()">
-        <input placeholder="name" formControlName="email" type="hidden">
-        <button *ngIf="!isLiked" mat-raised-button color="primary" matBadge="{{likes}}" matBadgePosition="before"
-          matBadgeColor="accent">Like</button>
-          <button *ngIf="isLiked" mat-raised-button color="warn" matBadge="{{likes}}" matBadgePosition="before"
-          matBadgeColor="accent">DisLike</button>
-      </form>
-      <form id="comment-form" [formGroup]="commentProfile" (ngSubmit)="postComment()">
-        <mat-form-field class="example-full-width">
-          <textarea matInput formControlName="comment" placeholder="Leave a comment"></textarea>
-        </mat-form-field>
-        <button mat-raised-button color="primary">Comment</button>
-      </form>
-    </div>
-  </mat-card-actions>
-</mat-card>
+<div *ngIf="profile">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
+      </div>
+      <mat-card-title>{{profile.name }} {{profile.surname}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>E-mail:</strong> {{profile.emailProfile}}</p>
+      <p><strong>Location:</strong> {{profile.location}}</p>
+      <p><strong>BIO:</strong> {{profile.bio }}</p>
+      <p><strong>birthday:</strong> {{profile.birthday}}</p>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="posts">
+    <mat-card class="example-card" *ngFor="let post of posts">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
+        </div>
+        <p>{{post.post}}</p>
+      </mat-card-header>
+
+      <mat-card-actions *ngIf="isPosts">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <form *ngIf="!post.isLiked" [formGroup]="likeProfile" (ngSubmit)="likeProfilef(post.id)">
+            <button mat-raised-button color="primary" matBadge="{{post.likes}}" matBadgePosition="before"
+              matBadgeColor="accent">Like</button>
+          </form>
+
+          <form *ngIf="post.isLiked" [formGroup]="dislikeProfile" (ngSubmit)="dislikeProfilef(post.id)">
+            <button mat-raised-button color="warn" matBadge="{{post.likes}}" matBadgePosition="before"
+              matBadgeColor="accent">Dislike</button>
+          </form>
+
+          <form id="comment-form" [formGroup]="commentProfile" (ngSubmit)="postComment(post.id)">
+            <mat-form-field class="example-full-width">
+              <textarea matInput formControlName="comment" placeholder="Leave a comment"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Comment</button>
+          </form>
+        </div>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</div>

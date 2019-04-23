@@ -12,3 +12,25 @@
 #comment-form {
   margin-top: -15px;
 }
+
+p {
+  word-wrap: break-word;
+  width: 300px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.profile-image {
+  height: 30px;
+  width: 30px;
+  border-radius: 25px;
+  margin-right: 5px;
+  float: left;
+}
+
+.name-comment {
+  width: 150px;
+}

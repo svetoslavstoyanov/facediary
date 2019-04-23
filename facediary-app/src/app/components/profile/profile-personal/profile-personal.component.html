@@ -1,4 +1,4 @@
-<div *ngFor="let profile of profileOwn | async">
+<div *ngIf="profile">
 
   <mat-card class="example-card">
     <mat-card-header>
@@ -17,5 +17,28 @@
       <p><strong>BIO:</strong> {{profile.bio }}</p>
       <p><strong>birthday:</strong> {{profile.birthday}}</p>
     </mat-card-content>
+    <form (ngSubmit)="post()" [formGroup]="postFormGroup">
+      <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
+        <mat-form-field>
+          <input matInput placeholder="post" formControlName="post" required type="text">
+        </mat-form-field>
+        <div>
+          <button mat-raised-button>Post</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+  <mat-card class="example-card" *ngFor="let post of posts">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img class="example-header-image" src={{profile.profilePhoto}} alt="Photo">
+      </div>
+      <span>{{post.post}}</span>
+      <form (ngSubmit)="deletePost(post.id)" [formGroup]="deletePostFormGroup">
+        <button type="submit" mat-raised-button>
+          <mat-icon class="tooltip" matTooltip="press to delete post">delete</mat-icon>
+        </button>
+      </form>
+    </mat-card-header>
   </mat-card>
 </div>
