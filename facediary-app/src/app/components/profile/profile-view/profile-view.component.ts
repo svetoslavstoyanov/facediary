@@ -63,7 +63,6 @@ export class ProfileViewComponent implements OnInit {
             console.log(data)
             if (value['comments']) {
               this.comments = Object.entries(value['comments'])
-              console.log(value['comments'])
             }
             if (value['likes']) {
               let obj = value['likes']
