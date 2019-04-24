@@ -2,7 +2,7 @@
   <div>
     <a routerLink='/'>
       <mat-icon inline=true>forum</mat-icon>
-      Facediary
+      <span id="name-app">Facediary</span>
     </a></div>
   <ul fxFlex fxLayout fxLayoutGap='10px' fxLayoutAlign='flex-end'>
     <li *ngIf="!authService.isAuthenticated()"><a routerLink='/login' routerLinkActive='active'>
@@ -15,9 +15,10 @@
       </a></li>
     <li *ngIf="authService.isAuthenticated() && profile"><a routerLink='/profiles/my' routerLinkActive='active'>
         <img class="profile-image" src="{{profile.profilePhoto}}" alt="">
-        <span>{{profile.name}}</span>
+        <span id="profile-name">{{profile.name}}</span>
       </a></li>
-    <li *ngIf="authService.isAuthenticated()"><a routerLink='/profiles/all' routerLinkActive='active'>All profiles</a></li>
+    <li *ngIf="authService.isAuthenticated()"><a routerLink='/profiles/all' routerLinkActive='active'>All profiles</a>
+    </li>
     <li *ngIf="authService.isAuthenticated()"><a (click)="logout()" id="logout" routerLinkActive='active'>Logout</a>
     </li>
   </ul>

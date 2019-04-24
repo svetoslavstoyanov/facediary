@@ -27,3 +27,16 @@ a:hover {
   float: left;
 }
 
+@media only screen and (max-width: 768px) {
+  #name-app {
+    color: transparent;
+    width: 1px;
+    font-size: 0;
+  }
+
+  #profile-name {
+    color: transparent;
+    width: 1px;
+    font-size: 0;
+  }
+}
