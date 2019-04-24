@@ -9,7 +9,8 @@ import { ProfileService } from 'src/app/core/services/profile.service';
 })
 export class HeaderComponent implements OnInit {
   profile
-  constructor(private authService: AuthService,
+  constructor(
+    public authService: AuthService,
     private profileService: ProfileService) { }
 
   ngOnInit() {

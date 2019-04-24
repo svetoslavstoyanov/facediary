@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  isLinear
   registerForm: FormGroup
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
