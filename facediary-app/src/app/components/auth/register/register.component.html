@@ -7,9 +7,9 @@
         <ng-template matStepLabel>Fill out your e-mail</ng-template>
         <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
           <mat-form-field>
-            <input matInput placeholder="E-mail" formControlName="email" required type="text">
+            <input matInput placeholder="E-mail" formControlName="email" required=true type="email">
           </mat-form-field>
-          <button mat-raised-button matStepperNext>Next</button>
+          <button [disabled]='!firstFormGroup.valid' mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -18,11 +18,11 @@
         <ng-template matStepLabel>Enter your Password</ng-template>
         <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
           <mat-form-field>
-            <input matInput placeholder="Password" formControlName="password" required type="password">
+            <input matInput placeholder="Password" formControlName="password" required=true type="password">
           </mat-form-field>
           <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
             <button mat-raised-button matStepperPrevious>Back</button>
-            <button mat-raised-button matStepperNext>Next</button>
+            <button [disabled]='!secondFormGroup.valid' mat-raised-button matStepperNext>Next</button>
           </div>
         </div>
       </form>
@@ -36,7 +36,7 @@
           </mat-form-field>
           <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
             <button mat-raised-button matStepperPrevious>Back</button>
-            <button mat-raised-button matStepperNext>Next</button>
+            <button [disabled]='!thirthFormGroup.valid' mat-raised-button matStepperNext>Next</button>
           </div>
         </div>
       </form>
@@ -47,22 +47,22 @@
         <div fxFlex fxLayout="column" fxLayoutAlign='center center'>
 
           <mat-form-field>
-            <input matInput placeholder="name" formControlName="name" required type="text">
+            <input matInput placeholder="first name" formControlName="name" required type="text">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="surname" formControlName="surname" required type="text">
+            <input matInput placeholder="last name" formControlName="surname" required type="text">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="profile photo" formControlName="profilePhoto" required type="text">
+            <input matInput placeholder="profile photo url" formControlName="profilePhoto" required type="text">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="cover photo" formControlName="coverPhoto" required type="text">
+            <input matInput placeholder="cover photo url" formControlName="coverPhoto" required type="text">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="email" formControlName="emailProfile" required type="text">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="location" formControlName="location" required type="text">
+            <input matInput placeholder="location/city, country/" formControlName="location" required type="text">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="birthday" formControlName="birthday" required type="date">
@@ -72,7 +72,7 @@
           </mat-form-field>
           <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
             <button mat-raised-button matStepperPrevious>Back</button>
-            <button mat-raised-button matStepperNext>Next</button>
+            <button [disabled]='!personalInfo.valid' mat-raised-button matStepperNext>Next</button>
           </div>
         </div>
       </form>

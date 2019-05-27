@@ -18,8 +18,8 @@ export class RegisterComponent implements OnInit {
   personalInfo: FormGroup
   constructor(private _formBuilder: FormBuilder,
     private authService: AuthService,
-     private profileService: ProfileService,
-     private toastr: MatSnackBar) { }
+    private profileService: ProfileService,
+    private toastr: MatSnackBar) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -55,8 +55,10 @@ export class RegisterComponent implements OnInit {
       })
     } else {
       this.profileService.createProfile(this.personalInfo.value).subscribe()
+      console.log('create profile');
 
     }
     this.authService.register(email, password)
+    console.log('register');
   }
 }
